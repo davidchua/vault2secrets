@@ -4,8 +4,6 @@
 
 Vault2Secrets is developed to solve the problem of syncing secrets stored on Hashicorp's Vault with Kubernetes.
 
-Its objective is to take secrets stored in Hashicorp Vault and return it as Kubernetes Secret Objects.
-
 ### Problem
 
 Operators want to allow Developers to self-deploy their apps onto Kubernetes without them having access to sensitive data that they need to use in the normal functioning of their apps.
@@ -14,9 +12,9 @@ Operators would store such sensitive data into an external resource like Hashico
 
 ### Function
 
-Vault2Secrets is a Kubernetes Controller that can be deployed on a Kubernetes Cluster which makes use of Custom ThirdPartyResources like `CustomSecret` to instruct the retrieval and access of Hashicorp Vault stored data and convert them into secure Kubernetes Secret Objects.
+Vault2Secrets is a Kubernetes Controller that can be deployed on a Kubernetes Cluster which makes use of a ThirdPartyResources called `CustomSecret` to retrieve Hashicorp Vault stored data and convert them into secure Kubernetes Secret Objects.
 
-Operators can then instruct as part of the application's deployment manifest file to pull environment variables as `SecretRef`.
+Operators can then reference these Secret Objects to be loaded onto their deployment's environment variables.
 
 Whenever the Vault Secret that is being monitored has a change, Vault2Secrets will be able to automatically pick it up and update the respective Vault Secret Objects.
 
