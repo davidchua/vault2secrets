@@ -5,14 +5,15 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
 var (
-	namespace                      = "default"
+	namespace                      = os.Getenv("NAMESPACE")
 	apiHost                        = "http://127.0.0.1:8001"
-	customSecretsWithWatchEndpoint = fmt.Sprintf("/apis/cubiclerebels.com/v1/namespaces/default/customsecrets?watch=true")
-	customSecretsEndpoint          = fmt.Sprintf("/apis/cubiclerebels.com/v1/namespaces/default/customsecrets")
+	customSecretsWithWatchEndpoint = fmt.Sprintf("/apis/cubiclerebels.com/v1/namespaces/%s/customsecrets?watch=true", namespace)
+	customSecretsEndpoint          = fmt.Sprintf("/apis/cubiclerebels.com/v1/namespaces/%s/customsecrets", namespace)
 )
 
 func pollSecrets() <-chan VaultEvent {

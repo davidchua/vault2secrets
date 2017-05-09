@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"reflect"
@@ -17,7 +18,7 @@ type FullSecret struct {
 	Type       string            `json:"type"`
 }
 
-var secretsEndpoint = "/api/v1/namespaces/default/secrets"
+var secretsEndpoint = fmt.Sprintf("/api/v1/namespaces/%s/secrets", namespace)
 
 func processEvent(event VaultEvent) {
 
