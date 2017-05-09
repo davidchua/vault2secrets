@@ -7,8 +7,6 @@ import (
 	"log"
 	"net/http"
 
-	//	"k8s.io/kubernetes/pkg/api/v1"
-
 	vaultapi "github.com/hashicorp/vault/api"
 )
 
