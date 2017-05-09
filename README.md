@@ -39,11 +39,11 @@ This will pull all the necessary dependencies and build a binary in the current 
 
 ### Deploying
 
-To deploy, run the following:
+To deploy, you can find the example scripts in `examples/`
 
-`make deploy`
+TL;DR
 
-This will create a Docker image where the binary will be built and stored.
-
-You can then take the image and push it to a Docker Registry of choice.
-
+1. `kubectl create -f examples/tpr.yml`
+2. `kubectl create -f examples/vault2secrets.yml`
+3. Modify `examples/generic-secret.yml` with your `VAULT TOKEN` and deploy
+4. Modify `examples/example-custom-secret.yml` and deploy
