@@ -40,11 +40,6 @@ func createVaultClient(tokenRef, vaultUrl string) (*VaultClient, error) {
 	if err != nil {
 		log.Println(red("Error pulling secrets", err))
 	}
-	//output, err := json.Marshal(resp.Body)
-	//if err != nil {
-	//	log.Println("Marshalling error", err)
-
-	//}
 	secretObj := json.NewDecoder(resp.Body)
 	err = secretObj.Decode(&secretjob)
 	if err != nil {
@@ -53,12 +48,6 @@ func createVaultClient(tokenRef, vaultUrl string) (*VaultClient, error) {
 
 	token := secretjob.Data.Token
 	decodedToken, err := base64.StdEncoding.DecodeString(token)
-
-	//output, err = json.Marshal(secretjob)
-	//if err != nil {
-	//	log.Println("Marshalling error", err)
-	//}
-	//log.Println(string(output))
 
 	client, err := vaultapi.NewClient(config)
 	client.SetToken(string(decodedToken))
@@ -80,10 +69,4 @@ func (vaultClient *VaultClient) read(secretPath string) map[string]interface{} {
 
 	}
 	return secret.Data
-
-	//output, _ := json.Marshal(secret)
-	//log.Println(string(output))
-
-	//return string(output)
-
 }
