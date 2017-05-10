@@ -1,6 +1,6 @@
 # Vault2Secrets
 
-![vault2secrets architecture](https://cloud.githubusercontent.com/assets/68039/25882039/22e0514c-3573-11e7-8f64-e9d0f7b368af.png)
+![vault2secrets architecture](https://cloud.githubusercontent.com/assets/68039/25882064/5712396c-3573-11e7-8e62-7c9a8c46290b.png)
 
 ### Objectives
 
