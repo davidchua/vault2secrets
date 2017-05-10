@@ -1,5 +1,7 @@
 # Vault2Secrets
 
+![vault2secrets architecture](https://cloud.githubusercontent.com/assets/68039/25882039/22e0514c-3573-11e7-8f64-e9d0f7b368af.png)
+
 ### Objectives
 
 Vault2Secrets is developed to solve the problem of syncing secrets stored on Hashicorp's Vault with Kubernetes.
