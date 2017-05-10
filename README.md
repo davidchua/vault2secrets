@@ -47,3 +47,7 @@ TL;DR
 2. `kubectl create -f examples/vault2secrets.yml`
 3. Modify `examples/generic-secret.yml` with your `VAULT TOKEN` and deploy
 4. Modify `examples/example-custom-secret.yml` and deploy
+
+### Credits
+
+This controller wouldn't be possible if not for @kelseyhightower [Kubernetes Certificate Manager](https://github.com/kelseyhightower/kube-cert-manager) and his presentation at [PuppetConf 2016](https://www.youtube.com/watch?v=HlAXp0-M6SY)
