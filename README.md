@@ -25,7 +25,6 @@ Whenever the Vault Secret that is being monitored has a change, Vault2Secrets wi
 
 Important Environment Flags
 ```
-NAMESPACE=default
 KUBERNETES_API_ENDPOINT=127.0.0.1:8001
 ```
 
@@ -48,6 +47,7 @@ TL;DR
 3. Modify `examples/generic-secret.yml` with your `VAULT TOKEN` and deploy
 4. Modify `examples/example-custom-secret.yml` and deploy
 
+A slightly detailed instruction can be found [here](docs/gettingstarted.md)
 ### Credits
 
 This controller wouldn't be possible if not for @kelseyhightower [Kubernetes Certificate Manager](https://github.com/kelseyhightower/kube-cert-manager) and his presentation at [PuppetConf 2016](https://www.youtube.com/watch?v=HlAXp0-M6SY)
