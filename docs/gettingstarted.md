@@ -1,4 +1,4 @@
-#Getting Started
+# Getting Started
 
 These are the short steps to get your Vault2Secrets running on your Kubernetes Cluster
 
