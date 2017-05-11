@@ -26,8 +26,6 @@ func pollSecrets() <-chan VaultEvent {
 			resp, err := http.Get(apiHost + customSecretsWithWatchEndpoint)
 			if err != nil {
 				log.Fatal(err)
-				continue
-
 			}
 
 			decoder := json.NewDecoder(resp.Body)
@@ -35,7 +33,8 @@ func pollSecrets() <-chan VaultEvent {
 				var vaultevent VaultEvent
 				err = decoder.Decode(&vaultevent)
 				if err != nil {
-					log.Println(err)
+					log.Println(customSecretsWithWatchEndpoint)
+					log.Fatal(err)
 				}
 				events <- vaultevent
 
