@@ -44,4 +44,6 @@ TL;DR
 A slightly detailed instruction can be found [here](docs/gettingstarted.md)
 ### Credits
 
-This controller wouldn't be possible if not for @kelseyhightower [Kubernetes Certificate Manager](https://github.com/kelseyhightower/kube-cert-manager) and his presentation at [PuppetConf 2016](https://www.youtube.com/watch?v=HlAXp0-M6SY)
+This controller wouldn't be possible if not for @kelseyhightower [Kubernetes Certificate Manager](https://github.com/kelseyhightower/kube-cert-manager) and his presentation at [PuppetConf 2016](https://www.youtube.com/watch?v=HlAXp0-M6SY).
+
+Also many thanks to [Chu Yeow](http://twitter.com/chuyeow) for all the advice he has given me.
