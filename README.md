@@ -21,18 +21,12 @@ Operators can then reference these Secret Objects to be loaded onto their deploy
 Whenever the Vault Secret that is being monitored has a change, Vault2Secrets will be able to automatically pick it up and update the respective Vault Secret Objects.
 
 
-## Instructions
-
-Important Environment Flags
-```
-KUBERNETES_API_ENDPOINT=127.0.0.1:8001
-```
 
 ### Developing
 
-To get a local copy of the controller running, please run
+To get a local copy of the controller running in docker, please run
 
-`make`
+`make docker`
 
 This will pull all the necessary dependencies and build a binary in the current directory
 
