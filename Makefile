@@ -7,3 +7,4 @@ tag:
 
 push:
 	docker push cubiclerebels/vault2secrets:$(VERSION)
+	docker push cubiclerebels/vault2secrets:latest
