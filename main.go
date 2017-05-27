@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 	"sync"
 	"time"
 
@@ -11,6 +12,7 @@ import (
 
 var (
 	api         = "http://127.0.0.1:8001"
+	namespace   = os.Getenv("NAMESPACE")
 	vaultClient *VaultClient
 	yellow      = color.New(color.FgYellow).SprintFunc()
 	green       = color.New(color.FgGreen).SprintFunc()
@@ -18,6 +20,11 @@ var (
 )
 
 func main() {
+
+	if namespace == "" {
+		namespace = "default"
+		log.Fatal("No NAMESPACE Environment Variable set. Please set the variable and re-run this binary")
+	}
 
 	log.Println(green("Vault2Secrets initialized"))
 

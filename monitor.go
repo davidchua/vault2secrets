@@ -5,19 +5,21 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 	"time"
 )
 
 var (
-	namespace                      = os.Getenv("NAMESPACE")
+	newNamespace                   = &namespace
 	apiHost                        = "http://127.0.0.1:8001"
-	customSecretsWithWatchEndpoint = fmt.Sprintf("/apis/cubiclerebels.com/v1/namespaces/%s/customsecrets?watch=true", namespace)
-	customSecretsEndpoint          = fmt.Sprintf("/apis/cubiclerebels.com/v1/namespaces/%s/customsecrets", namespace)
+	customSecretsWithWatchEndpoint = fmt.Sprintf("/apis/cubiclerebels.com/v1/namespaces/%v/customsecrets?watch=true", *newNamespace)
+	customSecretsEndpoint          = fmt.Sprintf("/apis/cubiclerebels.com/v1/namespaces/%v/customsecrets", *newNamespace)
 )
 
 func pollSecrets() <-chan VaultEvent {
+	log.Println(*newNamespace)
+	log.Println(fmt.Sprintf("/apis/%v/", *newNamespace))
 	events := make(chan VaultEvent)
+	log.Println(customSecretsWithWatchEndpoint)
 
 	go func() {
 		for {

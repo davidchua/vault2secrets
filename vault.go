@@ -37,6 +37,7 @@ func createVaultClient(tokenRef, vaultUrl string) (*VaultClient, error) {
 	resp, err := http.Get(apiHost + fmt.Sprintf("/api/v1/namespaces/default/secrets/"+tokenRef))
 	if err != nil {
 		log.Println(red("Error pulling secrets", err))
+		return nil, err
 	}
 	secretObj := json.NewDecoder(resp.Body)
 	err = secretObj.Decode(&secretjob)
@@ -58,13 +59,14 @@ func createVaultClient(tokenRef, vaultUrl string) (*VaultClient, error) {
 
 }
 
-func (vaultClient *VaultClient) read(secretPath string) map[string]interface{} {
+func (vaultClient *VaultClient) read(secretPath string) (map[string]interface{}, error) {
 	c := vaultClient.client.Logical()
 
 	secret, err := c.Read(secretPath)
 	if err != nil {
 		log.Println("VAULT Error getting secret", err)
+		return nil, err
 
 	}
-	return secret.Data
+	return secret.Data, nil
 }

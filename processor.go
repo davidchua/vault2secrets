@@ -33,7 +33,11 @@ func processEvent(event VaultEvent) {
 	if event.Type == "ADDED" {
 		log.Println(yellow("Getting Token ", token, " URL ", url, " Path ", path))
 		vClient, _ := createVaultClient(token, url)
-		secret := vClient.read(path)
+		secret, err := vClient.read(path)
+		if err != nil {
+			return
+
+		}
 		processSecrets(vaultObj.Spec.Secret, secret)
 
 	} else if event.Type == "DELETED" {
@@ -96,14 +100,26 @@ func syncSecrets() {
 		token := item.Spec.TokenRef
 		url := item.Spec.Url
 		path := item.Spec.Path
-		vClient, _ := createVaultClient(token, url)
-		secret := vClient.read(path)
-		processSecrets(item.Spec.Secret, secret)
+		vClient, err := createVaultClient(token, url)
+		if err != nil {
+			log.Println(err)
+			break
+
+		}
+		secret, err := vClient.read(path)
+		if err != nil {
+			break
+
+		}
+		err = processSecrets(item.Spec.Secret, secret)
+		if err != nil {
+			log.Fatal("Error!")
+		}
 	}
 
 }
 
-func processSecrets(secret string, data map[string]interface{}) (bool, error) {
+func processSecrets(secret string, data map[string]interface{}) error {
 	pdata := make(map[string]string)
 	for k, v := range data {
 		pdata[k] = base64.StdEncoding.EncodeToString([]byte(v.(string)))
@@ -125,7 +141,7 @@ func processSecrets(secret string, data map[string]interface{}) (bool, error) {
 
 	resp, err := http.Get(apiHost + secretsEndpoint + "/" + secret)
 	if err != nil {
-		return false, err
+		return err
 	}
 
 	// compare secrets with data
@@ -147,7 +163,7 @@ func processSecrets(secret string, data map[string]interface{}) (bool, error) {
 
 	}
 	// if secrets different, update secret with new data
-	return true, nil
+	return nil
 }
 func writeSecret(secret *FullSecret) {
 	var b []byte
